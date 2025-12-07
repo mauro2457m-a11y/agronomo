@@ -1,14 +1,5 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { CropInfo } from '../types';
-
-const API_KEY = process.env.API_KEY;
-
-if (!API_KEY) {
-  console.warn("API_KEY environment variable not set. Using a placeholder. The app will not function correctly without a valid API key.");
-}
-
-const ai = new GoogleGenAI({ apiKey: API_KEY || 'YOUR_API_KEY_HERE' });
 
 const cropInfoSchema = {
   type: Type.OBJECT,
@@ -54,6 +45,9 @@ const cropInfoSchema = {
 };
 
 export const fetchCropInfo = async (cropName: string): Promise<CropInfo> => {
+  // Instantiate the AI client here to ensure it uses the provided API key correctly.
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  
   const prompt = `Forneça informações detalhadas sobre a cultura de '${cropName}' em português do Brasil. Eu preciso de uma lista de pragas comuns e doenças comuns que afetam essa cultura. Para cada praga, inclua o nome científico, uma descrição dos danos e métodos de controle. Para cada doença, inclua o agente causador, os sintomas e os métodos de controle. Siga estritamente o esquema JSON fornecido.`;
 
   try {
