@@ -1,0 +1,5 @@
+{
+  "name": "Guia do Agrônomo com IA",
+  "description": "Um aplicativo para agrônomos e agricultores obterem informações sobre pragas, doenças e tratamentos para diversas culturas agrícolas, alimentado por IA.",
+  "requestFramePermissions": []
+}
